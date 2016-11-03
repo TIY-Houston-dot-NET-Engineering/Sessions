@@ -1,8 +1,33 @@
 
 <div>
     <h1>Hello @ViewBag.Username from a view</h1>
+    <p>You've visited this page @ViewBag.Count times.</p>
     <!--<p>@Model</p>-->
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @*
 Examples:
@@ -36,7 +61,7 @@ other helpers: Html.TextBox, Html.TextBoxFor/asp-for, Html.Editor, Html.EditorFo
 
     @model CountryViewModel
     <form asp-controller="Home" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-        <select asp-for="Country" asp-items="Model.Countries"></select> 
+        <select asp-for="Country" asp-items="Model.Countries"></select>
         <br /><button type="submit">Register</button>
     </form>
 
@@ -44,9 +69,9 @@ other helpers: Html.TextBox, Html.TextBoxFor/asp-for, Html.Editor, Html.EditorFo
 
     @model CountryEnumViewModel
     <form asp-controller="Home" asp-action="IndexEnum" method="post">
-        <select asp-for="EnumCountry" 
+        <select asp-for="EnumCountry"
                 asp-items="Html.GetEnumSelectList<CountryEnum>()"> >
-        </select> 
+        </select>
         <br /><button type="submit">Register</button>
     </form>
 

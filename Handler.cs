@@ -60,10 +60,12 @@ public partial class Handler {
 
         services.AddDistributedMemoryCache();
         services.AddSession(o => {
-            o.IdleTimeout = TimeSpan.FromSeconds(120);
+            o.IdleTimeout = TimeSpan.FromSeconds(60 * 60 * 24);
         });
         services.AddMvc();
         services.AddCors();
+
+        services.AddSingleton<ISessionService, SessionService>();
 
         // instead of
         //      services.AddScoped<IRepository<Card>, Repo<Card>>();
@@ -87,7 +89,7 @@ public partial class Handler {
         });
     }
 
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, DB db) {
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, DB db, ISessionService session) {
         // logger.AddConsole(Configuration.GetSection("Logging"));
         logger.AddDebug();
 
@@ -101,6 +103,11 @@ public partial class Handler {
         //     await next();
         //     await context.Response.WriteAsync("Post Processing");
         // });
+
+        app.Use(async (context, next) => {
+            session.SetSession(context.Session);
+            await next();
+        });
 
         if (env.IsDevelopment())
         {
