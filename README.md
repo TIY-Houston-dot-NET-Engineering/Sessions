@@ -20,22 +20,7 @@
 
 # To deploy
 
-To https://now.sh:
-
-1. **The slow way**
-    - from project folder: `now --docker`
-    - open the url provided (`dotnetcore-boilerplate-XXXXXXXXXXXX.now.sh`); when the installation is done the browser will be redirected to your new server
-    - to setup a custom URL: `now alias dotnetcore-boilerplate-XXXXXXXXXXXX.now.sh YOURAPPNAME.now.sh`
-2. **The fast way**
-    - from project folder: `npm run deploy`
-
-To https://heroku.com
-
-- install the heroku CLI (https://devcenter.heroku.com/articles/heroku-command-line)
-- (update and commit all your local git files)
-- `heroku create --buildpack http://github.com/noliar/dotnet-buildpack.git`
-- `git push heroku master`
-- `heroku open`
+To https://now.sh: `npm run deploy`
 
 # Support
 
